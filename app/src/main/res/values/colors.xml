@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="grey">#808080</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="tealBlue">#034457</color>
+    <color name="helioTrope">#A869FF</color>
+    <color name="tiffanyBlue">#07C2AA</color>
+    <color name="crayola">#F9A825</color>
+    <color name="lightCrayola">#D5F9A825</color>
+</resources>

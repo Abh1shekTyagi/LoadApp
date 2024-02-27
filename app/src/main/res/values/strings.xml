@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">LoadApp</string>
+    <string name="radiobutton">RadioButton</string>
+    <string name="glide">Glide - Image Loading Library by BumpTech</string>
+    <string name="loadApp">LoadApp - Current repository by Udacity</string>
+    <string name="retrofit">Retrofit - Type-safe HTTP client for android and Java by Square, Inc</string>
+    <string name="download">Download</string>
+    <string name="download_channel">download_channel</string>
+    <string name="downloading_please_wait">Downloading %s, Please wait</string>
+    <string name="download_success">File downloaded successfully</string>
+    <string name="we_are_loading">We are loading</string>
+    <string name="select_file">Please select the file to download</string>
+    <string name="app_description">Download files from Internet</string>
+    <string name="file_name">File Name:</string>
+    <string name="status">Status</string>
+    <string name="success">Success</string>
+    <string name="pending">Pending…</string>
+    <string name="running">Running…</string>
+    <string name="paused">Paused…</string>
+    <string name="fail">Fail</string>
+    <string name="ok">OK</string>
+    <string name="check_status">Check the status</string>
+</resources>
