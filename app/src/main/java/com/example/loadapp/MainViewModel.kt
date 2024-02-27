@@ -7,6 +7,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Context.RECEIVER_EXPORTED
 import android.content.Intent
 import android.content.IntentFilter
 import android.database.Cursor
@@ -121,8 +122,9 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun registerReceiver(receiver: BroadcastReceiver) {
-        app.registerReceiver(receiver, filter)
+        app.registerReceiver(receiver, filter, RECEIVER_EXPORTED)
     }
 
     fun unregisterReceiver(receiver: BroadcastReceiver) {

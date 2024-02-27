@@ -119,6 +119,7 @@ class DownloadHomeFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onResume() {
         super.onResume()
         viewModel.registerReceiver(receiver)

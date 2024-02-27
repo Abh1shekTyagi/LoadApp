@@ -11,9 +11,9 @@
         <com.example.loadapp.ui.customviews.DownloadIcon
             android:id="@+id/customIcon"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.33"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,12 +21,12 @@
             android:id="@+id/radioGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_20dp"
-            android:layout_marginVertical="@dimen/_20dp"
-            app:layout_constraintBottom_toTopOf="@+id/downloadCustomButton"
+            android:paddingVertical="@dimen/_20dp"
+            android:paddingHorizontal="@dimen/_20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customIcon">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/glideRadioButton"
@@ -41,7 +41,7 @@
                 style="@style/textStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_15dp"
+                android:paddingVertical="@dimen/_15dp"
                 android:text="@string/loadApp"
                 app:buttonTint="@color/crayola" />
 
