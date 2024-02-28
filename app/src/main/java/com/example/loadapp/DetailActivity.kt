@@ -3,8 +3,8 @@ package com.example.loadapp
 import android.app.DownloadManager
 import android.app.NotificationManager
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.loadapp.databinding.ActivityDetailBinding
 

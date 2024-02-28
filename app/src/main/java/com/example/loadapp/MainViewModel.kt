@@ -30,13 +30,15 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
     private var downloadProgress = 0f
     private var downloadStatus: Int? = null
     private var downloadFileName: String? = null
-    private var isDownloadInProgress = false
 
     private val _downloadProgressLiveData: MutableLiveData<Int> = MutableLiveData()
     val downloadProgressLiveData: LiveData<Int> = _downloadProgressLiveData.distinctUntilChanged()
 
     private val _downloadingFileLiveData: MutableLiveData<String?> = MutableLiveData()
     val downloadingFileLiveData: LiveData<String?> = _downloadingFileLiveData
+
+    private val _postNotification: MutableLiveData<Boolean?> = MutableLiveData()
+    val postNotification: LiveData<Boolean?> = _postNotification
 
     private val filter = IntentFilter().apply {
         addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
@@ -45,10 +47,6 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
     }
 
     fun download(url: String, title: CharSequence, subtitle: CharSequence) {
-        if (isDownloadInProgress) {
-            _downloadingFileLiveData.postValue(downloadFileName)
-            return
-        }
         val downloadRequest =
             DownloadManager.Request(Uri.parse(url))
                 .setTitle(title)
@@ -61,15 +59,13 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
             app.getSystemService(AppCompatActivity.DOWNLOAD_SERVICE) as DownloadManager
         downloadId = downloadManager.enqueue(downloadRequest)
         downloadFileName = subtitle.toString()
-        isDownloadInProgress = true
         updateDownloadProgress()
     }
 
     fun onReceive(intent: Intent?) {
         viewModelScope.launch(Dispatchers.IO) {
             readDownloadFile(intent)
-            resetDownloadProgressToZero()
-            postNotificationWithActionReceiver()
+            _postNotification.postValue(true)
         }
     }
 
@@ -92,13 +88,7 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
         }
     }
 
-    private fun resetDownloadProgressToZero() {
-        isDownloadInProgress = false
-        downloadProgress = 0f
-        _downloadProgressLiveData.postValue(0)
-    }
-
-    private fun postNotificationWithActionReceiver() {
+    fun postNotificationWithAction() {
         val statusIntent = Intent(app, BroadcastReceiverHandler::class.java).apply {
             action = NOTIFICATION_ACTION_CLICKED
             putExtra(DOWNLOAD_STATUS, downloadStatus)
@@ -146,7 +136,7 @@ class MainViewModel(private val app: Application) : AndroidViewModel(app) {
                 val downloadedBytes = cursor.getLong(downloadedBytesIndex)
                 if (totalBytes != -1L) {
                     downloadProgress = ((downloadedBytes * 100f) / totalBytes)
-                    _downloadProgressLiveData.postValue(downloadProgress.toInt())
+                    _downloadProgressLiveData.postValue(downloadProgress.toInt() % 100)
                 }
             }
             cursor?.close()

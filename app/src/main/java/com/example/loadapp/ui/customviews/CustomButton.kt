@@ -5,13 +5,16 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
+import androidx.core.content.withStyledAttributes
 import com.example.loadapp.R
 
-class CustomButton(
+class CustomButton @JvmOverloads constructor(
     context: Context,
-    attributeSet: AttributeSet
-) : View(context, attributeSet) {
+    attributeSet: AttributeSet,
+    defStyleRes: Int = 0
+) : View(context, attributeSet, defStyleRes) {
 
     private val rect = RectF()
     private val buttonColor = context.getColor(R.color.tiffanyBlue)
@@ -25,8 +28,19 @@ class CustomButton(
         textAlign = Paint.Align.CENTER
     }
 
+    private var clickEnabled = true
+    private var clickDisabled = false
+
+    init {
+        context.withStyledAttributes(attributeSet, R.styleable.CustomButton) {
+            clickEnabled = getBoolean(R.styleable.CustomButton_isEnabled, true)
+            clickDisabled = getBoolean(R.styleable.CustomButton_isDisabled, false)
+        }
+    }
+
     fun changeButtonProgress(downloadProgress: Int) {
         progress = downloadProgress
+        isClickable = if (progress == 0) clickEnabled else clickDisabled
         invalidate()
     }
 
@@ -37,7 +51,7 @@ class CustomButton(
         paint.color = rectColor
         canvas.drawRect(rect, paint)
         drawText(
-            canvas, if (progress == 0 || progress >= 100f) {
+            canvas, if (progress == 0) {
                 context.getString(R.string.download)
             } else {
                 context.getString(R.string.we_are_loading)

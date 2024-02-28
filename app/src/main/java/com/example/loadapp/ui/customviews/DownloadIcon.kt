@@ -13,10 +13,9 @@ import android.view.MotionEvent
 import android.view.View
 import com.example.loadapp.R
 
-class DownloadIcon(context: Context, attrs: AttributeSet? = null) :
-    View(context, attrs) {
+class DownloadIcon @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleRes: Int = 0) :
+    View(context, attrs,defStyleRes) {
     private val clippedPath = Path()
-    private val backgroundColor = context.getColor(R.color.tealBlue)
     private val paintColor = context.getColor(R.color.helioTrope)
     private var clippedRectangleWidth = 0f
     private var clippedRectangleHeight = 0f
@@ -32,23 +31,20 @@ class DownloadIcon(context: Context, attrs: AttributeSet? = null) :
         color = paintColor
         isAntiAlias = true
     }
-    private var backgroundHeight = 0f
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (actionUp) {
-            backgroundHeight = height / 3f
             clippedRectangleWidth = width / 10f
-            clippedRectangleHeight = backgroundHeight / 7f
+            clippedRectangleHeight = height / 7f
         }
-        canvas.drawRect(0f, 0f, width.toFloat(), backgroundHeight, paint.apply { color = backgroundColor })
         canvas.save()
         canvas.translate(horizontalCenter, verticalCenter)
         clipDownloadIcon(canvas)
         paint.color = paintColor
         canvas.drawCircle(
             width / 2f,
-            backgroundHeight / 2f + clippedRectangleWidth / 5,
+            height / 2f + clippedRectangleWidth / 5,
             clippedRectangleHeight * 2.5f,
             paint
         )
@@ -59,8 +55,8 @@ class DownloadIcon(context: Context, attrs: AttributeSet? = null) :
     private fun clipDownloadIcon(canvas: Canvas) {
         clippedRectangleLeft = (width - clippedRectangleWidth) / 2
         clippedRectangleRight = (width + clippedRectangleWidth) / 2
-        clippedRectangleTop = (backgroundHeight - clippedRectangleHeight) / 2
-        clippedRectangleBottom = (backgroundHeight + clippedRectangleHeight) / 2
+        clippedRectangleTop = (height - clippedRectangleHeight) / 2
+        clippedRectangleBottom = (height + clippedRectangleHeight) / 2
 
         rect.set(
             clippedRectangleLeft,
@@ -97,9 +93,9 @@ class DownloadIcon(context: Context, attrs: AttributeSet? = null) :
 
                 else -> {
                     horizontalCenter = event.x - width / 2
-                    verticalCenter = event.y - backgroundHeight / 2
+                    verticalCenter = event.y - height / 2
                     clippedRectangleWidth = width / 13f
-                    clippedRectangleHeight = backgroundHeight / 10f
+                    clippedRectangleHeight = height / 10f
                     actionUp = false
                 }
             }

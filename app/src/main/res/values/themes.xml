@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.LoadApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-<!--        <item name="colorPrimary">@color/crayola</item>-->
+        <item name="colorPrimary">@color/white</item>
     </style>
 
     <style name="Theme.LoadApp" parent="Base.Theme.LoadApp" />

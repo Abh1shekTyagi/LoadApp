@@ -19,5 +19,7 @@
     <string name="paused">Paused…</string>
     <string name="fail">Fail</string>
     <string name="ok">OK</string>
+    <string name="allow">Allow</string>
     <string name="check_status">Check the status</string>
+    <string name="allow_notification">Please allow notification to be notified on download complete</string>
 </resources>
