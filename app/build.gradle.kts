@@ -57,10 +57,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     //fragment
     implementation("androidx.fragment:fragment-ktx:1.6.2")
-    //navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    //viewmodel
+    //view model
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     //livedata
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
