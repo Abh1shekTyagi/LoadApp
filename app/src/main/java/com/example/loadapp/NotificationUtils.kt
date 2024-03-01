@@ -44,14 +44,14 @@ fun NotificationManager.sendNotification(
                 appContext.getString(R.string.check_status),
                 statusPendingIntent
             ).setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentIntent(
-                PendingIntent.getActivity(
-                    appContext,
-                    NOTIFICATION_ID,
-                    Intent(appContext, MainActivity::class.java),
-                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-                )
-            )
+//            .setContentIntent(
+//                PendingIntent.getActivity(
+//                    appContext,
+//                    NOTIFICATION_ID,
+//                    Intent(appContext, MainActivity::class.java),
+//                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+//                )
+//            )
     notify(NOTIFICATION_ID, notificationBuilder.build())
 }
 
