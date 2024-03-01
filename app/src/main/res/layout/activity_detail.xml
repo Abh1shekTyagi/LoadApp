@@ -9,60 +9,61 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_detail_scene">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_for_text"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/fileName"
+            style="@style/textStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:alpha="0"
+            android:text="@string/file_name"
+            android:textColor="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/downloadedFileName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@id/guideline" />
 
-            <TextView
-                android:id="@+id/fileName"
-                style="@style/textStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_40dp"
-                android:text="@string/file_name"
-                android:textColor="@color/grey"
-                app:layout_constraintEnd_toStartOf="@+id/downloadedFileName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/downloadedFileName"
+            style="@style/textStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20dp"
+            android:alpha="0"
+            android:textColor="@color/tealBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fileName"
+            app:layout_constraintTop_toTopOf="@id/fileName" />
 
-            <TextView
-                android:id="@+id/downloadedFileName"
-                style="@style/textStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_20dp"
-                android:textColor="@color/tealBlue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/fileName"
-                app:layout_constraintTop_toTopOf="@id/fileName" />
+        <TextView
+            android:id="@+id/status"
+            style="@style/textStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_20dp"
+            android:layout_marginStart="@dimen/_20dp"
+            android:alpha="0"
+            android:text="@string/status"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
-            <TextView
-                android:id="@+id/status"
-                style="@style/textStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_20dp"
-                android:text="@string/status"
-                android:textColor="@color/grey"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/downloadedFileName" />
-
-            <TextView
-                android:id="@+id/downloadStatus"
-                style="@style/textStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/tealBlue"
-                app:layout_constraintStart_toStartOf="@id/downloadedFileName"
-                app:layout_constraintTop_toTopOf="@id/status" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <TextView
+            android:id="@+id/downloadStatus"
+            style="@style/textStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:textColor="@color/tealBlue"
+            app:layout_constraintStart_toStartOf="@id/downloadedFileName"
+            app:layout_constraintTop_toTopOf="@id/status" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
